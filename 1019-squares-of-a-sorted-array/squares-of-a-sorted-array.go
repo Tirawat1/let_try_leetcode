@@ -1,10 +1,8 @@
+// this is more optimize way
 func sortedSquares(nums []int) []int {
-	ans := make([]int, len(nums))
-
-	for i := 0; i < len(nums); i++ {
-		a1 := nums[i] * nums[i]
-		ans[i] = int(a1)
+	for i, v := range nums {
+		nums[i] = v * v
 	}
-	sort.Ints(ans)
-	return ans
+	slices.Sort(nums)
+	return nums
 }
