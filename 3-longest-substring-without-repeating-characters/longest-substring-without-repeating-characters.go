@@ -1,25 +1,28 @@
 func lengthOfLongestSubstring(s string) int {
-
 	lastSeen := map[byte]int{}
-
 	start := 0
 	longest := 0
-
 	for i := 0; i < len(s); i++ {
-
+		// check first char
 		c := s[i]
+		// if duplicate stop longest start = last index
+		// สิ่งที่ต้องทำตรงนี้คือตรวจก่อนว่ามีตัวช้ำกันไหมคือดูจาก lastseen ว่า c ล่าสุดที่เข้ามา
+		// มีตัวช้ำกันแล้วไหมใน lastSeen ก็คือสมมติวิ่ง 1 2 3 4 มาจะหยุด
 
-		// check duplicate ถ้าเจออันช้ำให้ return ok เข้า if และ last >= start กัน case มันเลยจุดนับไปแล้ว
-		if last, ok := lastSeen[c]; ok && last >= start {
-			start = last + 1
+		// 1R1T7
+		if latestValue, ok := lastSeen[c]; ok && start <= latestValue {
+			start = latestValue + 1
 		}
-		// update longest
-		length := i - start + 1
-		if length > longest {
-			longest = length
+		space := i - start + 1
+		if space > longest {
+			longest = space
 		}
-		// update map
+		// length := i - start + 1
+		// if length > longest {
+		// 	longest = length
+		// }
 		lastSeen[c] = i
+
 	}
 
 	return longest
