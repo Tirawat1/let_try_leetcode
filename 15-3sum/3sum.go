@@ -1,44 +1,38 @@
-func threeSum(nums []int) [][]int {
-
-	// sort array first
-	// [-1, 0, 1, 2, -1, -4] -> [-4,-1,-1,0,1,2]
-	// use 3 num to += 0
-	sort.Ints(nums)
+func threeSum(arr []int) [][]int {
 	answer := make([][]int, 0)
-	for i := 0; i < len(nums); i++ {
-		// i = fixed
-		left := i + 1
-		right := len(nums) - 1
-		var sum int
-		if i > 0 && nums[i] == nums[i-1] {
+	sort.Ints(arr)
+	for i := 0; i < len(arr); i++ {
+		// i = fixed value
+		if i > 0 && arr[i] == arr[i-1] {
 			continue
 		}
-		for right > left {
-			//sum = fixed + left + right
-			sum = nums[i] + nums[left] + nums[right]
-			if sum == 0 {
-				// append to array
-				answer = append(answer, []int{nums[i], nums[left], nums[right]})
+		left := i + 1
+		right := len(arr) - 1
+		for left < right {
+			sum := arr[left] + arr[right]
+			if sum == -arr[i] {
+				// if found duplicate
+				// เจอ match แล้ว บันทึกคำตอบ
+				val := []int{arr[left], arr[right], arr[i]}
+				answer = append(answer, val)
 				left++
 				right--
-				for left < right && nums[left] == nums[left-1] {
+				for left < right && arr[left] == arr[left-1] {
 					left++
 				}
-				for left < right && nums[right] == nums[right+1] {
+				for right > left && arr[right] == arr[right+1] {
 					right--
 				}
-			} else if sum > 0 {
-				right--
-				for left < right && nums[right] == nums[right+1] {
-					right--
-				}
-			} else { // sum < 0
-				left++
-				for left < right && nums[left] == nums[left-1] {
-					left++
-				}
+			} else if sum < -arr[i] {
+				left++ // sum น้อยไป ต้องเพิ่ม
+
+			} else {
+				right-- // sum มากไป ต้องลด
+
 			}
 		}
+
 	}
 	return answer
+
 }
