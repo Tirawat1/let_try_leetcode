@@ -1,6 +1,6 @@
 # 📝 374. Guess Number Higher or Lower (LeetCode)
 
-🔗 [Problem Link](https://leetcode.com/problems/guess-number-higher-or-lower)
+🔗 [Problem Link](https://leetcode.com/problems/guess-number-higher-or-lower/)
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Easy-brightgreen) ![Language](https://img.shields.io/badge/Language-Go-blue)
 
@@ -32,7 +32,7 @@ You call a pre-defined API  `int guess(int num)` , which returns three possible 
 
 Return  *the number that I picked* .
 
-OriginalGo **Example 1:**
+**Example 1:**
 
 ```
 Input: n = 10, pick = 6
